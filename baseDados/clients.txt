@@ -1,0 +1,2 @@
+PF,531.257.508-90,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
+PJ,45.718.988/0003-29,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 

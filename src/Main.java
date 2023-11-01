@@ -1,4 +1,4 @@
-import Menu.Menu;
+import Interface.Menu;
 
 public class Main {
 
