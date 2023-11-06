@@ -1,4 +1,5 @@
 package Interface.Tabs.Clientes.Tabs;
+
 import javax.swing.*;
 
 import Managers.ClientManager;
@@ -8,13 +9,10 @@ public class Buscar extends JPanel {
     private static ClientManager clientManager = ClientManager.getInstance();
 
     public Buscar() {
-        String clients = "";
-
         for (Client client : clientManager.getClientsPf()) {
-            clients += client.toString() + "\n";
+            add(new JTable(new Object[][] {
+                    { client.getName(), client.getEntryDate(), client.getAddress() }
+            }, new String[] { "Nome", "Data de Entrada", "Endereço" }));
         }
-
-        add(new JLabel(clients));
     }
 }
-
