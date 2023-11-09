@@ -12,6 +12,10 @@ public class ClientPF extends Client {
     }
 
     public String toString() {
-        return super.toString() + " | CPF: " + cpf + " | Max Installments: " + maxInstallments;
+        return super.toString() + " | CPF: " + cpf + " | Max. Parcelas: " + maxInstallments;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 }

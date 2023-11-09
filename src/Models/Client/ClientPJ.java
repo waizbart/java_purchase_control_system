@@ -14,6 +14,10 @@ public class ClientPJ extends Client {
     }
 
     public String toString() {
-        return super.toString() + " | CNPJ: " + cnpj + " | Social Reason: " + socialReason + " | Max Days For Payment: " + maxDaysForPayment;
+        return super.toString() + " | CNPJ: " + cnpj + " | Razão Social: " + socialReason + " | Max. dias para pagamento: " + maxDaysForPayment;
+    }
+
+    public String getCnpj() {
+        return cnpj;
     }
 }

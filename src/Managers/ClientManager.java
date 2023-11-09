@@ -51,9 +51,8 @@ public class ClientManager {
     }
 
     public void create(
-        Client client,
-        String type
-    ) {
+            Client client,
+            String type) {
         if (type.equals("PF")) {
             clientsPf.add((ClientPF) client);
         } else {
@@ -61,25 +60,64 @@ public class ClientManager {
         }
     }
 
-    public void update() {
-        System.out.println("ClientManager.update()");
-    }
-
-    public void delete() {
-        System.out.println("ClientManager.delete()");
-    }
-
-    public ArrayList<Client> getClients(){
+    public ArrayList<Client> getClients() {
         ArrayList<Client> clients = new ArrayList<Client>();
         clients.addAll(clientsPf);
         clients.addAll(clientsPj);
 
         clients.sort(
-            (Client client1, Client client2) -> {
-                return client1.getEntryDate().compareTo(client2.getEntryDate());
-            }
-        );
+                (Client client1, Client client2) -> {
+                    return client1.getEntryDate().compareTo(client2.getEntryDate());
+                });
 
         return clients;
+    }
+
+    public void deleteByCpf(String cpf) throws Error {
+        cpf = cpf.replaceAll("[^\\d]", "");
+
+        for (ClientPF client : clientsPf) {
+            String clientCpf = client.getCpf().replaceAll("[^\\d]", "");
+
+            if (clientCpf.equals(cpf)) {
+                clientsPf.remove(client);
+                return;
+            }
+        }
+
+        throw new Error("Cliente não encontrado");
+    }
+
+    public void deleteByCnpj(String cnpj) throws Error {
+        cnpj = cnpj.replaceAll("[^\\d]", "");
+
+        for (ClientPJ client : clientsPj) {
+            String clientCnpj = client.getCnpj().replaceAll("[^\\d]", "");
+
+            if (clientCnpj.equals(cnpj)) {
+                clientsPj.remove(client);
+                return;
+            }
+        }
+
+        throw new Error("Cliente não encontrado");
+    }
+
+    public void deleteByName(String name) throws Error {
+        for (ClientPF client : clientsPf) {
+            if (client.getName().equals(name)) {
+                clientsPf.remove(client);
+                return;
+            }
+        }
+
+        for (ClientPJ client : clientsPj) {
+            if (client.getName().equals(name)) {
+                clientsPj.remove(client);
+                return;
+            }
+        }
+
+        throw new Error("Cliente não encontrado");
     }
 }

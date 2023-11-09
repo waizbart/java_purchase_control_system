@@ -1,10 +1,10 @@
-PF,531.257.508-90,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
+PF,531.257.508-91,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
 PJ,45.718.988/0003-29,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
-PF,531.257.508-90,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
-PJ,45.718.988/0003-29,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
-PF,531.257.508-90,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
-PJ,45.718.988/0003-29,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
-PF,531.257.508-90,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
-PJ,45.718.988/0003-29,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
-PF,531.257.508-90,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
-PJ,45.718.988/0003-29,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
+PF,531.257.508-92,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
+PJ,45.718.988/0003-30,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
+PF,531.257.508-93,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
+PJ,45.718.988/0003-31,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
+PF,531.257.508-94,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
+PJ,45.718.988/0003-32,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 
+PF,531.257.508-95,6,Guilherme Silva,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP
+PJ,45.718.988/0003-33,FACENS LTDA,31,Maria Nunes,2023-10-31,Rua Cananeia,100,Jardim Leocadia,18775014,Sorocaba,SP 

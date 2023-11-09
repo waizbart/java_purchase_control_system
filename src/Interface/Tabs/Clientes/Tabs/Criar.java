@@ -34,10 +34,9 @@ public class Criar extends JPanel {
                 razaoSocialInput.setVisible(false);
                 razaoSocialLabel.setVisible(false);
 
-                JLabel numDiasOuParcelasLabel = new JLabel("Número máximo de dias para pagamento:");
+                JLabel numDiasOuParcelasLabel = new JLabel("Número máximo de parcelas:");
                 JTextField numDiasOuParcelasInput = new JTextField();
 
-                // New address fields
                 JLabel ruaLabel = new JLabel("Rua:");
                 JTextField ruaInput = new JTextField();
 
@@ -61,8 +60,8 @@ public class Criar extends JPanel {
                 pessoaFisica.addActionListener(e -> {
                         if (pessoaFisica.isSelected()) {
                                 cpfCnpjLabel.setText("CPF:");
-                                numDiasOuParcelasLabel.setText("Número máximo de dias para pagamento:");
                                 nome.setText("Nome:");
+                                numDiasOuParcelasLabel.setText("Número máximo de parcelas:");
 
                                 // hide razao social
                                 razaoSocialLabel.setVisible(false);
@@ -73,7 +72,8 @@ public class Criar extends JPanel {
                 pessoaJuridica.addActionListener(e -> {
                         if (pessoaJuridica.isSelected()) {
                                 cpfCnpjLabel.setText("CNPJ:");
-                                numDiasOuParcelasLabel.setText("Número máximo de parcelas:");
+                                numDiasOuParcelasLabel.setText("Número máximo de dias para pagamento:");
+
                                 nome.setText("Nome Fantasia:");
 
                                 // show razao social
@@ -168,8 +168,7 @@ public class Criar extends JPanel {
                                 .addComponent(bairroLabel)
                                 .addComponent(cepLabel)
                                 .addComponent(cidadeLabel)
-                                .addComponent(estadoLabel)
-                                .addComponent(salvar));
+                                .addComponent(estadoLabel));
                 hGroup.addGroup(layout.createParallelGroup()
                                 .addGroup(layout.createSequentialGroup()
                                                 .addComponent(pessoaFisica)
@@ -183,7 +182,8 @@ public class Criar extends JPanel {
                                 .addComponent(bairroInput)
                                 .addComponent(cepInput)
                                 .addComponent(cidadeInput)
-                                .addComponent(estadoInput));
+                                .addComponent(estadoInput)
+                                .addComponent(salvar));
                 layout.setHorizontalGroup(hGroup);
 
                 GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
