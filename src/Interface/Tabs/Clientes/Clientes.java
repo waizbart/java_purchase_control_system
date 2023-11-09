@@ -14,6 +14,8 @@ public class Clientes extends JPanel {
         tabbedPane.addTab("Buscar", new Buscar());
         tabbedPane.addTab("Criar", new Criar());
 
+        tabbedPane.setMaximumSize(new Dimension(500, 500));
+
         add(tabbedPane, BorderLayout.CENTER);
     }
 }

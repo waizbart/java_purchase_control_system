@@ -20,6 +20,7 @@ public class Menu {
             tabbedPane.addTab("Relatórios", new Relatorios());
 
             frame.add(tabbedPane);
+
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setUndecorated(false);

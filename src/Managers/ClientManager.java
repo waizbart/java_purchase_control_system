@@ -50,12 +50,15 @@ public class ClientManager {
         return instance;
     }
 
-    public void create() {
-        System.out.println("ClientManager.create()");
-    }
-
-    public void read() {
-        System.out.println("ClientManager.read()");
+    public void create(
+        Client client,
+        String type
+    ) {
+        if (type.equals("PF")) {
+            clientsPf.add((ClientPF) client);
+        } else {
+            clientsPj.add((ClientPJ) client);
+        }
     }
 
     public void update() {
@@ -66,14 +69,17 @@ public class ClientManager {
         System.out.println("ClientManager.delete()");
     }
 
-    public ArrayList<ClientPF> getClientsPf() {
-        return clientsPf;
-    }
-
     public ArrayList<Client> getClients(){
         ArrayList<Client> clients = new ArrayList<Client>();
         clients.addAll(clientsPf);
         clients.addAll(clientsPj);
+
+        clients.sort(
+            (Client client1, Client client2) -> {
+                return client1.getEntryDate().compareTo(client2.getEntryDate());
+            }
+        );
+
         return clients;
     }
 }

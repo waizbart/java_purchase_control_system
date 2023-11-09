@@ -1,5 +1,6 @@
 package Models.Client;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Client {
@@ -38,8 +39,9 @@ public class Client {
     }
 
     public String toString() {
-        return "Client: " + name + " | Entry Date: " + entryDate + " | Address: " + address;
-    }
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(entryDate);
 
+        return "Cliente: " + name + " | Data de entrada: " + formattedDate;
+    }
     
 }
