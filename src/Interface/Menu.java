@@ -3,8 +3,7 @@ package Interface;
 import javax.swing.*;
 
 import Interface.Tabs.Compras;
-import Interface.Tabs.Produtos;
-import Interface.Tabs.Relatorios;
+import Interface.Tabs.Produtos.Produtos;
 import Interface.Tabs.Clientes.Clientes;
 
 public class Menu {
@@ -15,9 +14,8 @@ public class Menu {
             JTabbedPane tabbedPane = new JTabbedPane();
 
             tabbedPane.addTab("Clientes", new Clientes());
-            tabbedPane.addTab("Compras", new Compras());
             tabbedPane.addTab("Produtos", new Produtos());
-            tabbedPane.addTab("Relatórios", new Relatorios());
+            tabbedPane.addTab("Compras", new Compras());
 
             frame.add(tabbedPane);
 

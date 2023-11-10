@@ -1,5 +1,6 @@
 package Models.Product;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Product {
@@ -47,5 +48,11 @@ public class Product {
     public boolean isExpired() {
         Date today = new Date();
         return today.after(dueDate);
+    }
+
+    public String toString() {
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(dueDate);
+
+        return "Nome: " + name + " | Código: " + code + " | Descrição: " + description + " | Preço: " + price + " | Data de validade: " + formattedDate;
     }
 }
