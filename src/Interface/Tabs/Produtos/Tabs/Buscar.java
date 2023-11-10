@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Managers.ProductManager;
-import Models.Client.Client;
 import Models.Product.Product;
 
 public class Buscar extends JPanel {

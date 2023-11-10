@@ -19,13 +19,23 @@ public class ProductManager {
 
         for (String[] productData : productsData) {
             try {
-                products.add(
-                        new Product(
-                                productData[0],
-                                productData[1],
-                                productData[2],
-                                Double.parseDouble(productData[3]),
-                                format.parse(productData[4])));
+                if (productData.length == 4) {
+                    products.add(
+                            new Product(
+                                    productData[0],
+                                    productData[1],
+                                    productData[2],
+                                    Double.parseDouble(productData[3])));
+
+                } else {
+                    products.add(
+                            new Product(
+                                    productData[0],
+                                    productData[1],
+                                    productData[2],
+                                    Double.parseDouble(productData[3]),
+                                    format.parse(productData[4])));
+                }
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             } catch (ParseException e) {

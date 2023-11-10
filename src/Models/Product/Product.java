@@ -51,8 +51,23 @@ public class Product {
     }
 
     public String toString() {
-        String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(dueDate);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
-        return "Nome: " + name + " | Código: " + code + " | Descrição: " + description + " | Preço: " + price + " | Data de validade: " + formattedDate;
+        if (dueDate != null) {
+            return String.format(
+                    "Código: %s | Nome: %s | Descrição: %s | Valor: R$%.2f | Data de validade: %s",
+                    code,
+                    name,
+                    description,
+                    price,
+                    format.format(dueDate));
+        } else {
+            return String.format(
+                    "Código: %s | Nome: %s | Descrição: %s | Valor: R$%.2f",
+                    code,
+                    name,
+                    description,
+                    price);
+        }
     }
 }

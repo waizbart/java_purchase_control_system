@@ -39,8 +39,6 @@ public class ClientManager {
                 System.out.println("Erro ao criar cliente");
             }
         }
-
-        System.out.println("ClientManager()");
     }
 
     public static ClientManager getInstance() {
