@@ -46,6 +46,10 @@ public class Product {
     }
 
     public boolean isExpired() {
+        if (dueDate == null) {
+            return false;
+        }
+
         Date today = new Date();
         return today.after(dueDate);
     }

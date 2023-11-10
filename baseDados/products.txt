@@ -2,4 +2,4 @@ A1,Leite,Leite ninho 1L,4,2023-12-09
 A2,Arroz,Arroz 1kg,7
 A3,Feijao,Feijao 5kg,5,2023-12-09
 A4,Macarrao,Macarrao 500g,8
-A5,Oleo,Oleo de soja 1L,6,2023-12-09
+A5,Oleo,Oleo de soja 1L,6,2023-11-09
