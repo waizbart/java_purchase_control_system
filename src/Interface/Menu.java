@@ -2,7 +2,7 @@ package Interface;
 
 import javax.swing.*;
 
-import Interface.Tabs.Compras;
+import Interface.Tabs.Compras.Compras;
 import Interface.Tabs.Produtos.Produtos;
 import Interface.Tabs.Clientes.Clientes;
 

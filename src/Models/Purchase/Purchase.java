@@ -1,16 +1,17 @@
 package Models.Purchase;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Purchase {
     private int id;
     private Date date;
-    private int idClient;
+    private String idClient;
     private PurchaseItem[] items;
     private double totalValue;
     private double totalPaid;
 
-    public Purchase(int id, Date date, int idClient, PurchaseItem[] items) {
+    public Purchase(int id, Date date, String idClient, PurchaseItem[] items) {
         this.id = id;
         this.date = date;
         this.idClient = idClient;
@@ -30,7 +31,7 @@ public class Purchase {
         return date;
     }
 
-    public int getIdClient() {
+    public String getIdClient() {
         return idClient;
     }
 
@@ -52,5 +53,12 @@ public class Purchase {
 
     public double getRemainingValue() {
         return totalValue - totalPaid;
+    }
+
+    public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        return "ID: " + id + " | Data: " + format.format(date) + " | ID Cliente: " + idClient + " | Valor Total: " + totalValue
+                + " | Valor Pago: " + totalPaid + " | Valor Restante: " + getRemainingValue();
     }
 }

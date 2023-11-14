@@ -58,4 +58,14 @@ public class ProductManager {
     public ArrayList<Product> getProducts() {
         return products;
     }
+
+    public Product getProduct(String code) throws Error {
+        for (Product product : products) {
+            if (product.getCode().equals(code)) {
+                return product;
+            }
+        }
+        
+        throw new Error("Produto não encontrado");
+    }
 }
