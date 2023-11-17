@@ -1,156 +1,84 @@
 package Interface.Tabs.Compras.Tabs;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.*;
 
-import Managers.ClientManager;
-import Models.Client.Address;
-import Models.Client.ClientPF;
-import Models.Client.ClientPJ;
+import Managers.ProductManager;
+import Managers.PurchaseManager;
+
+import Models.Client.Client;
+import Models.Product.Product;
+import Models.Purchase.Purchase;
+import Models.Purchase.PurchaseItem;
 
 public class Criar extends JPanel {
+        private JList<String> productsList;
+        private static ProductManager productManager = ProductManager.getInstance();
+        private static PurchaseManager purchaseManager = PurchaseManager.getInstance();
+        private ArrayList<Product> products;
+
         public Criar() {
                 GroupLayout layout = new GroupLayout(this);
 
-                JLabel nome = new JLabel("Nome:");
-                JTextField nomeInput = new JTextField();
+                JLabel id = new JLabel("* ID:");
+                JTextField idInput = new JTextField();
 
-                JLabel tipoPessoa = new JLabel("Tipo de Pessoa:");
+                JLabel clientCpfCnpj = new JLabel("* CPF/CNPJ do cliente:");
+                JTextField clientCpfCnpjInput = new JTextField();
 
-                JRadioButton pessoaFisica = new JRadioButton("Pessoa Física");
-                JRadioButton pessoaJuridica = new JRadioButton("Pessoa Jurídica");
+                products = productManager.getProducts();
 
-                ButtonGroup tipoPessoaInput = new ButtonGroup();
-                tipoPessoaInput.add(pessoaFisica);
-                tipoPessoaInput.add(pessoaJuridica);
-                pessoaFisica.setSelected(true);
+                ArrayList<String> rows = new ArrayList<>();
 
-                JLabel cpfCnpjLabel = new JLabel("CPF:");
-                JTextField cpfCnpjInput = new JTextField();
+                for (Product product : products) {
+                        rows.add(product.toString());
+                }
 
-                JLabel razaoSocialLabel = new JLabel("Razão Social:");
-                JTextField razaoSocialInput = new JTextField();
-                razaoSocialInput.setVisible(false);
-                razaoSocialLabel.setVisible(false);
-
-                JLabel numDiasOuParcelasLabel = new JLabel("Número máximo de parcelas:");
-                JTextField numDiasOuParcelasInput = new JTextField();
-
-                JLabel ruaLabel = new JLabel("Rua:");
-                JTextField ruaInput = new JTextField();
-
-                JLabel numeroLabel = new JLabel("Número:");
-                JTextField numeroInput = new JTextField();
-
-                JLabel bairroLabel = new JLabel("Bairro:");
-                JTextField bairroInput = new JTextField();
-
-                JLabel cepLabel = new JLabel("CEP:");
-                JTextField cepInput = new JTextField();
-
-                JLabel cidadeLabel = new JLabel("Cidade:");
-                JTextField cidadeInput = new JTextField();
-
-                JLabel estadoLabel = new JLabel("Estado:");
-                JTextField estadoInput = new JTextField();
+                JLabel productsLabel = new JLabel("* Produtos:");
+                productsList = new JList<>(rows.toArray(new String[rows.size()]));
+                JScrollPane productsScrollPane = new JScrollPane(productsList);
 
                 JButton salvar = new JButton("Salvar");
-
-                pessoaFisica.addActionListener(e -> {
-                        if (pessoaFisica.isSelected()) {
-                                cpfCnpjLabel.setText("CPF:");
-                                nome.setText("Nome:");
-                                numDiasOuParcelasLabel.setText("Número máximo de parcelas:");
-
-                                // hide razao social
-                                razaoSocialLabel.setVisible(false);
-                                razaoSocialInput.setVisible(false);
-                        }
-                });
-
-                pessoaJuridica.addActionListener(e -> {
-                        if (pessoaJuridica.isSelected()) {
-                                cpfCnpjLabel.setText("CNPJ:");
-                                numDiasOuParcelasLabel.setText("Número máximo de dias para pagamento:");
-
-                                nome.setText("Nome Fantasia:");
-
-                                // show razao social
-                                razaoSocialLabel.setVisible(true);
-                                razaoSocialInput.setVisible(true);
-                        }
-                });
 
                 salvar.addActionListener(
                                 e -> {
                                         try {
-                                                String nomeCliente = nomeInput.getText();
-                                                String cpfCnpj = cpfCnpjInput.getText();
-                                                String razaoSocial = razaoSocialInput.getText();
-                                                String numDiasOuParcelas = numDiasOuParcelasInput.getText();
-                                                String rua = ruaInput.getText();
-                                                String numero = numeroInput.getText();
-                                                String bairro = bairroInput.getText();
-                                                String cep = cepInput.getText();
-                                                String cidade = cidadeInput.getText();
-                                                String estado = estadoInput.getText();
+                                                int idValue = Integer.parseInt(idInput.getText());
+                                                String clientCpfCnpjValue = clientCpfCnpjInput.getText();
+                                                ArrayList<PurchaseItem> selectedItems = new ArrayList<>();
 
-                                                Address address = new Address(rua, numero, bairro, cep, cidade, estado);
-
-                                                if (pessoaFisica.isSelected()) {
-                                                        if (nomeCliente.equals("") || cpfCnpj.equals("")
-                                                                        || numDiasOuParcelas.equals("")
-                                                                        || rua.equals("")
-                                                                        || numero.equals("") || bairro.equals("")
-                                                                        || cep.equals("") || cidade.equals("")
-                                                                        || estado.equals("")) {
-                                                                JOptionPane.showMessageDialog(null,
-                                                                                "Preencha todos os campos!");
-                                                        } else {
-                                                                ClientPF client = new ClientPF(cpfCnpj,
-                                                                                Integer.parseInt(numDiasOuParcelas),
-                                                                                nomeCliente, new Date(), address);
-
-                                                                ClientManager.getInstance().create(client, "PF");
-                                                        }
-                                                } else {
-                                                        if (nomeCliente.equals("") || cpfCnpj.equals("")
-                                                                        || razaoSocial.equals("")
-                                                                        || numDiasOuParcelas.equals("")
-                                                                        || rua.equals("")
-                                                                        || numero.equals("") || bairro.equals("")
-                                                                        || cep.equals("") || cidade.equals("")
-                                                                        || estado.equals("")) {
-                                                                JOptionPane.showMessageDialog(null,
-                                                                                "Preencha todos os campos!");
-                                                        } else {
-                                                                ClientPJ client = new ClientPJ(cpfCnpj, razaoSocial,
-                                                                                Integer.parseInt(numDiasOuParcelas),
-                                                                                nomeCliente, new Date(), address);
-
-                                                                ClientManager.getInstance().create(client, "PJ");
-                                                        }
-
+                                                if (clientCpfCnpjValue.length() != 11
+                                                                && clientCpfCnpjValue.length() != 14) {
+                                                        throw new Error("CPF/CNPJ inválido.");
                                                 }
 
-                                                nomeInput.setText("");
-                                                cpfCnpjInput.setText("");
-                                                razaoSocialInput.setText("");
-                                                numDiasOuParcelasInput.setText("");
-                                                ruaInput.setText("");
-                                                numeroInput.setText("");
-                                                bairroInput.setText("");
-                                                cepInput.setText("");
-                                                cidadeInput.setText("");
-                                                estadoInput.setText("");
+                                                for (int index : productsList.getSelectedIndices()) {
+                                                        selectedItems.add(new PurchaseItem(1, products.get(index)));
+                                                }
 
-                                                JOptionPane.showMessageDialog(null, "Cliente criado com sucesso!");
+                                                if (selectedItems.isEmpty())
+                                                        throw new Error("Selecione ao menos um produto.");
+
+                                                Purchase purchase = new Purchase(idValue, new Date(),
+                                                                clientCpfCnpjValue,
+                                                                selectedItems.toArray(new PurchaseItem[selectedItems
+                                                                                .size()]));
+
+                                                purchaseManager.create(purchase);
+
+                                                JOptionPane.showMessageDialog(null, "Compra criada com sucesso.");
+
+                                                idInput.setText("");
+                                                clientCpfCnpjInput.setText("");
+                                                productsList.clearSelection();
+
+                                        } catch (Error error) {
+                                                JOptionPane.showMessageDialog(null, error.getMessage());
                                         } catch (Exception error) {
-                                                JOptionPane.showMessageDialog(null,
-                                                                "Erro ao criar cliente! Verifique os campos e tente novamente.");
+                                                JOptionPane.showMessageDialog(null, "Erro ao criar produto.");
                                         }
-
                                 });
 
                 layout.setAutoCreateGaps(true);
@@ -158,69 +86,27 @@ public class Criar extends JPanel {
 
                 GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
                 hGroup.addGroup(layout.createParallelGroup()
-                                .addComponent(nome)
-                                .addComponent(tipoPessoa)
-                                .addComponent(cpfCnpjLabel)
-                                .addComponent(razaoSocialLabel)
-                                .addComponent(numDiasOuParcelasLabel)
-                                .addComponent(ruaLabel)
-                                .addComponent(numeroLabel)
-                                .addComponent(bairroLabel)
-                                .addComponent(cepLabel)
-                                .addComponent(cidadeLabel)
-                                .addComponent(estadoLabel));
+                                .addComponent(id)
+                                .addComponent(clientCpfCnpj)
+                                .addComponent(productsLabel)
+                                .addComponent(salvar));
                 hGroup.addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createSequentialGroup()
-                                                .addComponent(pessoaFisica)
-                                                .addComponent(pessoaJuridica))
-                                .addComponent(nomeInput)
-                                .addComponent(cpfCnpjInput)
-                                .addComponent(razaoSocialInput)
-                                .addComponent(numDiasOuParcelasInput)
-                                .addComponent(ruaInput)
-                                .addComponent(numeroInput)
-                                .addComponent(bairroInput)
-                                .addComponent(cepInput)
-                                .addComponent(cidadeInput)
-                                .addComponent(estadoInput)
+                                .addComponent(idInput)
+                                .addComponent(clientCpfCnpjInput)
+                                .addComponent(productsScrollPane)
                                 .addComponent(salvar));
                 layout.setHorizontalGroup(hGroup);
 
                 GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
                 vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(tipoPessoa)
-                                .addComponent(pessoaFisica)
-                                .addComponent(pessoaJuridica));
+                                .addComponent(id)
+                                .addComponent(idInput));
                 vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(nome)
-                                .addComponent(nomeInput));
+                                .addComponent(clientCpfCnpj)
+                                .addComponent(clientCpfCnpjInput));
                 vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cpfCnpjLabel)
-                                .addComponent(cpfCnpjInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(razaoSocialLabel)
-                                .addComponent(razaoSocialInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(numDiasOuParcelasLabel)
-                                .addComponent(numDiasOuParcelasInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(ruaLabel)
-                                .addComponent(ruaInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(numeroLabel)
-                                .addComponent(numeroInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(bairroLabel)
-                                .addComponent(bairroInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cepLabel)
-                                .addComponent(cepInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cidadeLabel)
-                                .addComponent(cidadeInput));
-                vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(estadoLabel)
-                                .addComponent(estadoInput));
+                                .addComponent(productsLabel)
+                                .addComponent(productsScrollPane));
                 vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(salvar));
                 layout.setVerticalGroup(vGroup);

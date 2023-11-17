@@ -59,6 +59,6 @@ public class Purchase {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
         return "ID: " + id + " | Data: " + format.format(date) + " | ID Cliente: " + idClient + " | Valor Total: " + totalValue
-                + " | Valor Pago: " + totalPaid + " | Valor Restante: " + getRemainingValue();
+                + " | Valor Pago: R$ " + totalPaid + " | Valor Restante: R$ " + getRemainingValue();
     }
 }
