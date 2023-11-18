@@ -11,6 +11,18 @@ public class Purchase {
     private double totalValue;
     private double totalPaid;
 
+    public Purchase(int id, Date date, String idClient, PurchaseItem[] items, double totalPaid) {
+        this.id = id;
+        this.date = date;
+        this.idClient = idClient;
+        this.items = items;
+        this.totalValue = 0;
+        this.totalPaid = totalPaid;
+        for (PurchaseItem item : items) {
+            this.totalValue += item.getPrice();
+        }
+    }
+
     public Purchase(int id, Date date, String idClient, PurchaseItem[] items) {
         this.id = id;
         this.date = date;
@@ -53,6 +65,10 @@ public class Purchase {
 
     public double getRemainingValue() {
         return totalValue - totalPaid;
+    }
+
+    public boolean isPaid() {
+        return totalPaid >= totalValue;
     }
 
     public String toString() {

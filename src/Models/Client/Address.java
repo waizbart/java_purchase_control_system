@@ -20,4 +20,28 @@ public class Address {
         return "Address: " + street + " | Number: " + number + " | Neighborhood: " + neighborhood + " | CEP: " + cep
                 + " | City: " + cidade + " | State: " + state;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getState() {
+        return state;
+    }
 }

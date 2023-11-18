@@ -18,4 +18,8 @@ public class ClientPF extends Client {
     public String getCpf() {
         return cpf;
     }
+
+    public int getMaxInstallments() {
+        return maxInstallments;
+    }
 }

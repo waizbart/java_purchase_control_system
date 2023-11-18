@@ -118,4 +118,50 @@ public class ClientManager {
 
         throw new Error("Cliente não encontrado");
     }
+
+    public void closeAndSave() {
+        FileManager fileManager = new FileManager();
+        Vector<String[]> clientsData = new Vector<String[]>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (ClientPF client : clientsPf) {
+            String[] clientData = new String[11];
+
+            clientData[0] = "PF";
+            clientData[1] = client.getCpf();
+            clientData[2] = client.getMaxInstallments() + "";
+            clientData[3] = client.getName();
+            clientData[4] = sdf.format(client.getEntryDate());
+            clientData[5] = client.getAddress().getStreet();
+            clientData[6] = client.getAddress().getNumber();
+            clientData[7] = client.getAddress().getNeighborhood();
+            clientData[8] = client.getAddress().getCep();
+            clientData[9] = client.getAddress().getCidade();
+            clientData[10] = client.getAddress().getState();
+
+            clientsData.add(clientData);
+        }
+
+        for (ClientPJ client : clientsPj) {
+            String[] clientData = new String[12];
+            
+            clientData[0] = "PJ";
+            clientData[1] = client.getCnpj();
+            clientData[2] = client.getSocialReason();
+            clientData[3] = client.getMaxDaysForPayment() + "";
+            clientData[4] = client.getName();
+            clientData[5] = sdf.format(client.getEntryDate());
+            clientData[6] = client.getAddress().getStreet();
+            clientData[7] = client.getAddress().getNumber();
+            clientData[8] = client.getAddress().getNeighborhood();
+            clientData[9] = client.getAddress().getCep();
+            clientData[10] = client.getAddress().getCidade();
+            clientData[11] = client.getAddress().getState();
+
+            clientsData.add(clientData);
+        }
+
+        fileManager.writeRows("baseDados/clients.txt", clientsData);
+    }
 }

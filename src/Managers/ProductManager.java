@@ -19,7 +19,7 @@ public class ProductManager {
 
         for (String[] productData : productsData) {
             try {
-                if (productData.length == 4) {
+                if (productData[4].equals("null")) {
                     products.add(
                             new Product(
                                     productData[0],
@@ -65,7 +65,30 @@ public class ProductManager {
                 return product;
             }
         }
-        
+
         throw new Error("Produto não encontrado");
+    }
+
+    public void closeAndSave() {
+        FileManager fileManager = new FileManager();
+        Vector<String[]> productsData = new Vector<String[]>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Product product : products) {
+            String[] productData = new String[5];
+
+            productData[0] = product.getCode();
+            productData[1] = product.getName();
+            productData[2] = product.getDescription();
+            productData[3] = String.valueOf(product.getPrice());
+            if (product.getDueDate() != null) {
+                productData[4] = sdf.format(product.getDueDate());
+            }
+
+            productsData.add(productData);
+        }
+
+        fileManager.writeRows("baseDados/products.txt", productsData);
     }
 }

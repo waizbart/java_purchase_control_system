@@ -20,4 +20,12 @@ public class ClientPJ extends Client {
     public String getCnpj() {
         return cnpj;
     }
+
+    public String getSocialReason() {
+        return socialReason;
+    }
+
+    public int getMaxDaysForPayment() {
+        return maxDaysForPayment;
+    }
 }

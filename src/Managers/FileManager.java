@@ -21,4 +21,22 @@ public class FileManager {
         }
         return null;
     }
+
+    public void writeRows(String path, Vector<String[]> rows) {
+        try {
+            String content = "";
+            for (String[] row : rows) {
+                for (String cell : row) {
+                    content += cell + ",";
+                }
+                content += "\n";
+            }
+            java.io.File file = new java.io.File(path);
+            java.io.FileWriter fw = new java.io.FileWriter(file);
+            fw.write(content);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

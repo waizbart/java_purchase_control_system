@@ -41,7 +41,8 @@ public class PurchaseManager {
                         Integer.parseInt(purchaseData[0]),
                         format.parse(purchaseData[1]),
                         purchaseData[2],
-                        items.toArray(new PurchaseItem[items.size()]));
+                        items.toArray(new PurchaseItem[items.size()]),
+                        purchaseData[4].equals("null") ? null : Double.parseDouble(purchaseData[4]));
 
                 purchases.add(purchase);
             } catch (Exception e) {
@@ -67,14 +68,96 @@ public class PurchaseManager {
         return purchases;
     }
 
-    public void updatePaidValue(int id, float value) throws Error {
+    public void updatePaidValue(int id, double value) throws Error {
         for (Purchase purchase : purchases) {
             if (purchase.getId() == id) {
-                purchase.setTotalPaid(purchase.getTotalValue());
+                purchase.setTotalPaid(value);
                 return;
             }
         }
 
         throw new Error("Compra não encontrada");
     }
+
+    public ArrayList<Purchase> getLastTenPaidPurchases() {
+        ArrayList<Purchase> lastTenPaidPurchases = new ArrayList<Purchase>();
+
+        for (int i = purchases.size() - 1; i >= 0; i--) {
+            Purchase purchase = purchases.get(i);
+
+            if (purchase.isPaid()) {
+                lastTenPaidPurchases.add(purchase);
+            }
+
+            if (lastTenPaidPurchases.size() == 10) {
+                break;
+            }
+        }
+
+        return lastTenPaidPurchases;
+    }
+
+    public Purchase showMostExpensivePurchase() {
+        Purchase mostExpensivePurchase = purchases.get(0);
+
+        for (Purchase purchase : purchases) {
+            if (purchase.getTotalValue() > mostExpensivePurchase.getTotalValue()) {
+                mostExpensivePurchase = purchase;
+            }
+        }
+
+        return mostExpensivePurchase;
+    }
+
+    public Purchase showMostCheapestPurchase() {
+        Purchase mostCheapestPurchase = purchases.get(0);
+
+        for (Purchase purchase : purchases) {
+            if (purchase.getTotalValue() < mostCheapestPurchase.getTotalValue()) {
+                mostCheapestPurchase = purchase;
+            }
+        }
+
+        return mostCheapestPurchase;
+    }
+
+    // get total value by each month
+    public double[] getTotalValueByMonth() {
+        double[] totalValueByMonth = new double[12];
+
+        for (Purchase purchase : purchases) {
+            int month = purchase.getDate().getMonth();
+            totalValueByMonth[month] += purchase.getTotalValue();
+        }
+
+        return totalValueByMonth;
+    }
+
+    public void closeAndSave() {
+        FileManager fileManager = new FileManager();
+        Vector<String[]> purchasesData = new Vector<String[]>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Purchase purchase : purchases) {
+            String items = "";
+
+            for (PurchaseItem item : purchase.getItems()) {
+                items += "[" + item.getQuantity() + "-" + item.getProduct().getCode() + "]";
+            }
+
+            purchasesData.add(new String[] {
+                    String.valueOf(purchase.getId()),
+                    sdf.format(purchase.getDate()),
+                    purchase.getIdClient(),
+                    items,
+                    String.valueOf(purchase.getTotalPaid())
+            });
+
+            System.out.println(purchasesData);
+        }
+
+        fileManager.writeRows("baseDados/purchases.txt", purchasesData);
+    }
+
 }
